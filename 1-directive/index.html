@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directive Vue</title>
+</head>
+<body>
+    <div id="app">
+        <!-- Menampilkan html -->
+        <h1 v-html="text_html"></h1> 
+
+        <!-- agar nilainya tidak bisa diubah -->
+        <h1 v-once>{{ message }}</h1>
+
+        <!-- menampilkan text biasa -->
+        <h1 v-text="message"></h1>
+        <h1>{{ message }}</h1>
+    </div>
+
+    <script src="../dist/vue.js"></script>
+</body>
+</html>
