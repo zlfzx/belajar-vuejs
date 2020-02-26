@@ -16,8 +16,27 @@
         <!-- menampilkan text biasa -->
         <h1 v-text="message"></h1>
         <h1>{{ message }}</h1>
+
+        <!-- menampilkan/menyembunyikan elemen -->
+        <h1 v-show="tampil_message">v-show : {{ message }}</h1>
+
+        <!-- if else -->
+        <h1 v-if="renderTitle">{{ title }}</h1>
+        <h1 v-else>Title tidak tampil</h1>
     </div>
 
     <script src="../dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                text_html: '<span style="color: red">Hello World</span>',
+                message: 'Hello World!',
+                tampil_message: true,
+                renderTitle: true,
+                title: 'IF ELSE'
+            }
+        })
+    </script>
 </body>
 </html>
