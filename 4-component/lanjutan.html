@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Lanjutan</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Kirim data ke component</h1>
+        <book
+            title="C++ High Performance"
+            description="Write code that scales across CPU registers, multicore, and machine clusters">
+
+        </book>
+        <br>
+        <h1>Directive Component</h1>
+        <book :title="judul">            
+        </book>
+            
+        <h1>looping komponen</h1>
+        <book
+            v-for="book in books"
+            :title="book.judul"
+            :description="book.deskripsi">
+        </book>
+    </div>
+
+    <script src="../dist/vue.js"></script>
+    <script>
+        let BookComponent = {
+            data () {
+                return {
+                    classCard: 'card'
+                }
+            },
+            props: ['title', 'description'],
+            template: `<div :class="classCard">
+                            <h3>{{ title }}</h3>
+                            <p v-html="description"></p>
+                        </div>`
+        }
+
+        new Vue({
+            el: '#app',
+            data: {
+                judul: 'judul buku',
+                books: [
+                    {
+                        judul: 'Buku A',
+                        deskripsi: 'ini buku A'
+                    },
+                    {
+                        judul: 'Buku B',
+                        deskripsi: 'ini buku B'
+                    },
+                    {
+                        judul: 'Buku C',
+                        deskripsi: 'Ini buku C'
+                    }
+                ]
+            },
+            components: {
+                'book': BookComponent
+            }
+        })
+    </script>
+</body>
+</html>

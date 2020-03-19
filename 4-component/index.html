@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component</title>
+</head>
+<body>
+    <div id="app">
+        <hello-world></hello-world>
+        <kebab-case></kebab-case>
+        <pascal-case></pascal-case>
+        <PascalCase></PascalCase>
+    </div>
+
+    <script src="../dist/vue.js"></script>
+    <script>
+        // Contoh component
+        Vue.component('hello-world', {
+            data () {
+                return {
+                    message: 'Hello World'
+                }
+            },
+            template: '<h1> {{ message }} </h1>'
+        })
+
+        // Penamaan component
+        // kebab-case
+        Vue.component('kebab-case', {
+            data () {
+                return {
+                    message: 'ini komponen kebab-case'
+                }
+            },
+            template: '<h1> {{ message }} </h1>'
+        })
+
+        // PascalCase
+        Vue.component('PascalCase', {
+            data () {
+                return {
+                    message: ' ini komponen PascalCase'
+                }
+            },
+            template: '<h1> {{ message }} </h1>'
+        })
+
+
+
+        let vm = new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+</html>

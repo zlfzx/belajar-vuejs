@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Component</title>
+</head>
+<body>
+    <div id="app">
+        <component-a></component-a>
+        <component-b></component-b>
+    </div>
+
+    <script src="../dist/vue.js"></script>
+    <script>
+        let component_a = {
+            template: '<p>Component A</p>'
+        }
+        let component_b = {
+            data () {
+                return {
+                    message: 'Hello World'
+                }
+            },
+            template: '<p>{{ message }}</p>'
+        }
+
+        let vm = new Vue({
+            el: '#app',
+            components: {
+                'component-a': component_a,
+                'component-b': component_b
+            }
+        })
+    </script>
+</body>
+</html>

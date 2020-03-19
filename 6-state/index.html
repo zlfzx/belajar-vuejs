@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Management</title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+
+    <script src="../dist/vue.js"></script>
+    <script src="../dist/vuex.js"></script>
+    <script type="module">
+        import {Hello} from './Hello.js'
+
+        const store = new Vuex.Store({
+            state: {
+                counter: 0
+            },
+            mutations: {
+                increment (state) {
+                    state.counter++
+                    // setTimeout(() => {
+                    //     state.counter++
+                    // }, 1000)
+                }
+            },
+            getters: {
+                counter: state => state.counter
+            },
+            actions: {
+                increment(context){
+                    context.commit('increment')
+                }
+            }
+        })
+        
+        let vm = new Vue({
+            el: '#app',
+            store,
+            components: {
+                'hello': Hello
+            },
+            computed: {
+                counter() {
+                    return store.getters.counter
+                }
+            },
+            template: `
+                <div>
+                    {{ counter }}
+                    <button @click="increment()">+</button>
+                    <hello></hello>
+                </div>
+            `,
+            methods: {
+                increment () {
+                    // store.commit('increment')
+                    store.dispatch('increment')
+                }
+            },
+        })
+    </script>
+</body>
+</html>

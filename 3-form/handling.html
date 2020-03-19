@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handling Form</title>
+</head>
+<body>
+    <div id="app">
+        <form @submit="submitForm($event)" action="http://zulfiz.web.id">
+            <label for="title">Title</label> <br>
+            <input type="text" v-model="title"> <br>
+
+            <label for="description">Description</label> <br>
+            <textarea v-model="description"></textarea> <br>
+
+            <label for="author">Author</label> <br>
+            <input type="text" v-model="author"> <br>
+
+            <label for="price">Price</label> <br>
+            <input type="text" v-model.number="price"> <br>
+
+            <label for="categories">Category</label> <br>
+            <select v-model="categories" multiple>
+                <option v-for="option in options" :value="option.value">
+                    {{ option.text }}
+                </option>
+            </select> <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+
+    <script src="../dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                title: '',
+                description: '',
+                author: '',
+                price: 0,
+                categories: [],
+                options: [
+                    { text: 'Graphics Programming', value: '01' },
+                    { text: 'Mobile Application Development', value: '02' },
+                    { text: 'Virtual and Augment Reality', value: '03' }
+                ]
+            },
+            methods: {
+                submitForm(e) {
+                    e.preventDefault();
+                    console.log(this.title);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

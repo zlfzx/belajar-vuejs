@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Lanjutan</title>
+</head>
+<body>
+    <div id="app">
+        Paket <br>
+        <input type="radio" name="bukuA" value="A" v-model="paket">
+        <label for="bukuA">Buku A</label> <br>
+
+        <input type="radio" name="bukuB" value="B" v-model="paket">
+        <label for="bukuB">Buku B</label> <br>
+
+        <input type="radio" name="bukuC" value="C" v-model="paket">
+        <label for="bukuC">Buku C</label> <br>
+
+        <span>Pilihan Paket: {{ paket }}</span>
+
+        <br><br><br>
+
+        <select name="category" v-model="category">
+            <option value="" disabled>Pilih Salah Satu</option>
+            <option value="Graphics Programming">Graphics Programming</option>
+            <option value="Mobile Programming">Mobile Programming</option>
+            <option value="Virtual and Augmented Reality">Virtual and Augmented Reality</option>
+        </select>
+        <span>Selected : {{ hasilCategory | upper }}</span>
+
+        <br><br><br>
+
+        Hobi : <br>
+        <input type="checkbox" name="hobi1" value="nonton" v-model="hobi">
+        <label for="hobi1">Nonton</label> <br>
+        
+        <input type="checkbox" name="hobi2" value="jalan" v-model="hobi">
+        <label for="hobi2">Jalan</label> <br>
+
+        <input type="checkbox" name="hobi3" value="makan" v-model="hobi">
+        <label for="hobi3">Makan</label> <br>
+
+        <span>Hobi : {{ hobi }}</span>
+
+        <br><br><br>
+
+        Filtering Data List :
+        <input type="text" v-model="keyword" placeholder="Ketikkan kata kunci">
+        <ul>
+            <li v-for="(book, index) of filterBooks" :key="index">
+                {{ book }}
+            </li>
+        </ul>
+    </div>
+
+    <script src="../dist/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                paket: '',
+                category: '',
+                hobi: [],
+                keyword: '',
+                books: [
+                    'C++ High Performance',
+                    'Mastering Linux Security and Hardening',
+                    'Python Programming Blueprints',
+                    'Mastering PostgreSQL 10'
+                ]
+            },
+            computed: {
+                hasilCategory () {
+                    return this.category
+                },
+                filterBooks () {
+                    return this.books.filter((book) => {
+                        return book.includes(this.keyword)
+                    })
+                }
+            },
+            filters: {
+                upper (text) {
+                    return text.toUpperCase()
+                }
+            }
+        })
+    </script>
+</body>
+</html>
